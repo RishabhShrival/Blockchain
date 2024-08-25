@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blockchain-Based Course Enrollment System
+
+This project is a decentralized course enrollment platform built on the Ethereum blockchain. It allows users to create and enroll in courses using cryptocurrency (ETH). The project leverages **Solidity** smart contracts for course management and **React** for the frontend UI.
+
+## Features
+
+- **Course Creation**: Admins can add new courses by specifying a name and price in ETH.
+- **Course Enrollment**: Users can enroll in available courses by paying the required ETH amount.
+- **Blockchain Integration**: All data related to courses and enrollment is stored on the Ethereum blockchain, ensuring transparency and security.
+
+## Tech Stack
+
+- **Frontend**: React.js, Tailwind CSS
+- **Smart Contracts**: Solidity
+- **Blockchain**: Ethereum, ethers.js
+- **Deployment**: Hardhat (or Truffle)
+
+## Prerequisites
+
+Before running this project, make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/)
+- [MetaMask](https://metamask.io/) browser extension
+- [Hardhat](https://hardhat.org/) or [Truffle](https://trufflesuite.com/) for smart contract deployment
+- [Ethereum Wallet](https://metamask.io/)
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/blockchain-course-enrollment.git
+cd blockchain-course-enrollment
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```bash
+Copy code
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 3. Compile Smart Contracts
+Compile the smart contracts using Hardhat (or Truffle):
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+Copy code
+npx hardhat compile
+```
+### 4. Deploy Smart Contracts
+Deploy your contracts to the local blockchain or a testnet:
 
-## Learn More
+```bash
+Copy code
+npx hardhat run scripts/deploy.js --network localhost
+``` 
+Make sure to update the contract address in the frontend after deployment.
 
-To learn more about Next.js, take a look at the following resources:
+### 5. Start the React App
+```bash
+Copy code
+npm run dev
+Your React app will be running at http://localhost:3000.
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Smart Contracts Overview
+The main smart contract, CourseContract.sol, contains the following key functions:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+createCourse(string name, uint256 price): Creates a new course.
+enrollInCourse(uint256 courseId): Enrolls a student in a course after payment.
+getStudentCourses(address student): Returns the list of courses a student is enrolled in.
+getCourse(uint256 courseId): Returns course details.
+Usage
+Login with MetaMask: Make sure you're logged in with your MetaMask wallet.
+Create a Course: Enter a course name and price to create a new course. This will trigger a transaction on the Ethereum blockchain.
+Enroll in a Course: View available courses and enroll by paying in ETH.
+Project Structure
+php
+Copy code
+.
+├── contract/
+│   └── CourseContract.sol   # Solidity contract for course management
+├── pages/
+│   └── index.js             # Main dashboard page
+│   └── dashboard.js         # Course management page
+├── public/
+│   └── ...                  # Static assets
+├── styles/
+│   └── globals.css          # Global CSS styles
+└── README.md                # Project documentation
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Deploy on Vercel
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Future Enhancements
+Adding user authentication for different roles (admin/student)
+Enabling course certification upon completion
+Expanding to multiple blockchains (e.g., Binance Smart Chain)
